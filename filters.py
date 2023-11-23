@@ -56,3 +56,15 @@ class InverseFilter(Filter):
         for color in (r, g, b):
             result.append(int((1 - exp(color / 255) / e) * 255))
         return tuple(result)
+
+
+class BrightFilter(Filter):
+    """
+    Фильтр, который делает изображение ярче.
+    """
+
+    def apply_to_pixel(self, pixel: tuple) -> tuple:
+        r, g, b = pixel
+        new_pixel = (min(r + 100, 255), min(g + 100, 255), min(b + 100, 255))
+        return new_pixel
+
